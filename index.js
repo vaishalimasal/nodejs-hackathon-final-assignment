@@ -1,7 +1,7 @@
 import bodyParser from 'body-parser';
 import express from 'express';
 import db from './models/index.js';
-import usersRoutes from './router/user.js';
+import usersRoutes from './router/employee.js';
 const app = express();
 app.use(bodyParser.json());
 app.use(

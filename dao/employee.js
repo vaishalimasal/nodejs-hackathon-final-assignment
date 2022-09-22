@@ -1,11 +1,11 @@
 import db from '../models/index.js';
 const { sequelize, employee } = db.db;
 
-const getAllUsersDao = async (t) => {
+const getAllEmployeesDao = async (t) => {
 	return await employee.findAll({ transaction: t });
 };
 
-const getUserByIdDao = async (t, id) => {
+const getEmployeeByIdDao = async (t, id) => {
 	return await employee.findOne(
 		{
 			where: {
@@ -16,7 +16,7 @@ const getUserByIdDao = async (t, id) => {
 	);
 };
 
-const updateUserDao = async (t, id, data) => {
+const updateEmployeeDao = async (t, id, data) => {
 	return await employee.update(
 		{
 			name: data.name,
@@ -31,7 +31,7 @@ const updateUserDao = async (t, id, data) => {
 	);
 };
 
-const deleteUserDao = async (t, id) => {
+const deleteEmployeeDao = async (t, id) => {
 	return await employee.destroy(
 		{
 			where: {
@@ -42,14 +42,14 @@ const deleteUserDao = async (t, id) => {
 	);
 };
 
-const addUserDao = async (t, data) => {
+const addEmployeeDao = async (t, data) => {
 	await employee.create(data, { transaction: t });
 };
 
 export {
-	getAllUsersDao,
-	getUserByIdDao,
-	addUserDao,
-	updateUserDao,
-	deleteUserDao,
+	getAllEmployeesDao,
+	getEmployeeByIdDao,
+	addEmployeeDao,
+	updateEmployeeDao,
+	deleteEmployeeDao,
 };
