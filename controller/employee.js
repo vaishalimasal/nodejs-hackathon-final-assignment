@@ -73,4 +73,16 @@ const addEmployee = async (req, res, next) => {
 };
 
 
-export { getAllEmployees, getEmployeeById, addEmployee, updateEmployee, deleteEmployee };
+// const addHackathon = async (req, res, next) => {
+// 	const { body } = req;
+// 	await sequelize.transaction(async (t) => {
+// 		return await addHackathonService(t, body);
+// 	});
+// 	res.status(201).send({
+// 		success: true,
+// 		message: 'Inserted successfully!!!',
+// 	});
+// 	next();
+// };
+
+export { getAllEmployees, getEmployeeById, addEmployee, updateEmployee, deleteEmployee};

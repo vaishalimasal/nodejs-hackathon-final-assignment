@@ -5,37 +5,36 @@ const getAllEmployeesDao = async (t) => {
 	return await employee.findAll({ transaction: t });
 };
 
-const getEmployeeByIdDao = async (t, id) => {
+const getEmployeeByIdDao = async (t, employeeId) => {
 	return await employee.findOne(
 		{
 			where: {
-				id,
+				employeeId,
 			},
 		},
 		{ transaction: t }
 	);
 };
 
-const updateEmployeeDao = async (t, id, data) => {
+const updateEmployeeDao = async (t, employeeId, data) => {
 	return await employee.update(
 		{
-			name: data.name,
-			email: data.email,
+			employeeName: data.employeeName	
 		},
 		{
 			where: {
-				id,
+				employeeId,
 			},
 		},
 		{ transaction: t }
 	);
 };
 
-const deleteEmployeeDao = async (t, id) => {
+const deleteEmployeeDao = async (t, employeeId) => {
 	return await employee.destroy(
 		{
 			where: {
-				id,
+				employeeId,
 			},
 		},
 		{ transaction: t }
