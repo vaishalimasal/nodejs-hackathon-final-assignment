@@ -10,11 +10,6 @@ export default (sequelize, Sequelize) => {
     },
   });
 
-  // Teams.associate = (models) => {
-  //   Teams.hasMany(models.Players, {
-  //     foreignKey: "creatorId",
-  //   });
-  // };
 
   return Employee;
 };

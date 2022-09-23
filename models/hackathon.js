@@ -7,9 +7,12 @@ export default (sequelize, Sequelize) => {
       type: Sequelize.STRING, // DataTypes.BOOLEAN
     }
   });
-  // Players.associate = (models) => {
-  //   Players.belongsTo(models.Teams, {
-  //     foreignKey: "creatorId",
+
+  // Hackathon.associate = (models) => {
+  //   Hackathon.belongsTo(models.employee, {
+  //     foreignKey: "emp_id",
+  //     allowNull: false, 
+  //     type: Sequelize.INTEGER
   //   });
   // };
   return Hackathon;

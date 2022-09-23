@@ -24,13 +24,14 @@ db.hackathon = Hackathon(sequelize, Sequelize);
 // 1 to Many Relation
 
 db.employee.hasMany(db.hackathon, {
-  foreignKey: "employee_id",
-  as: "hackathon",
+   foreignKey: "employeeId",
+  as: "hackathon"
 });
 
 db.hackathon.belongsTo(db.employee, {
-  foreignKey: "employee_id",
+  foreignKey: "employeeId",
   as: "employee",
 });
+
 
 export default { db };

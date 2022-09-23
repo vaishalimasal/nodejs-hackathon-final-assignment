@@ -17,8 +17,6 @@ const PORT = 3000;
 
 app.use("/employee", employeesRoutes);
 
-
-
 console.log(db.db.sequelize);
 db.db.sequelize
   .sync()

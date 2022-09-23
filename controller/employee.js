@@ -5,8 +5,10 @@ import {
 	getAllEmployeesService,
 	getEmployeeByIdService,
 	updateEmployeeService,
+	findEmployeeHackByIdService
 } from '../service/employee.service.js';
 const { sequelize } = db.db;
+
 
 const getAllEmployees = async (req, res, next) => {
 	const result = await sequelize.transaction(async (t) => {
@@ -72,17 +74,23 @@ const addEmployee = async (req, res, next) => {
 	next();
 };
 
+// connect one to many relation Product and Reviews
+//get  hackathons for given team
 
-// const addHackathon = async (req, res, next) => {
-// 	const { body } = req;
-// 	await sequelize.transaction(async (t) => {
-// 		return await addHackathonService(t, body);
-// 	});
-// 	res.status(201).send({
-// 		success: true,
-// 		message: 'Inserted successfully!!!',
-// 	});
-// 	next();
-// };
+const findEmployeeHackById = async (req, res, next) => {
+	const { id } = req.params;
+	console.log("ID", req.params, id);
+	const result = await sequelize.transaction(async (t) => {
+		return await findEmployeeHackByIdService(t, id);
+	});
+	res.status(200).send({
+		success: true,
+		message: result ? 'Data Found!!!' : 'No Data Found !!!',
+		data: result,
+	});
+	next();
+};
 
-export { getAllEmployees, getEmployeeById, addEmployee, updateEmployee, deleteEmployee};
+export { getAllEmployees, getEmployeeById, addEmployee, updateEmployee, deleteEmployee, 
+	 findEmployeeHackById
+};

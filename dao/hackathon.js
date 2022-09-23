@@ -5,8 +5,17 @@ const addHackathonDao = async (t, data) => {
   await hackathon.create(data, { transaction: t });
 };
 
-const getAllHackathonsDao = async () => {
-  return await hackathon.findAll({ });
+const getAllHackathonsDao = async (t) => hackathon.findAll({ transaction: t });
+
+const getHackathonByIdDao = async (t, id) => {
+	return await hackathon.findOne(
+		{
+			where: {
+				id
+			},
+		},
+		{ transaction: t }
+	);
 };
 
-export { addHackathonDao, getAllHackathonsDao };
+export { addHackathonDao, getAllHackathonsDao, getHackathonByIdDao};

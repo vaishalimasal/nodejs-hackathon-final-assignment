@@ -4,16 +4,23 @@ import {
   deleteEmployee,
   getAllEmployees,
   getEmployeeById,
-  updateEmployee} from "../controller/employee.js";
+  updateEmployee,
+  findEmployeeHackById,
+} from "../controller/employee.js";
 
-import {addHackathon,getAllHackathons} from '../controller/hackathon.js'
+import {
+  addHackathon,
+  getAllHackathons,
+  getHackathonById,
+} from "../controller/hackathon.js";
 
 const router = express.Router();
 
 // Hackathon Url and Controller
 
-router.get('/allHackathon', getAllHackathons)
-router.post('/addHackathon/:id', addHackathon)
+router.get("/test/allHackathon", getAllHackathons);
+router.post("/addHackathon", addHackathon);
+router.post("/test/allHackathon/:id", getHackathonById);
 
 //employee router
 router.get("/", getAllEmployees);
@@ -22,5 +29,7 @@ router.put("/:id", updateEmployee);
 router.post("/", addEmployee);
 router.delete("/:id", deleteEmployee);
 
+// get employee hackathon
+router.get("/getEmployeeHackathon/:id", findEmployeeHackById);
 
 export default router;
