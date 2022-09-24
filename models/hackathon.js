@@ -3,17 +3,21 @@ export default (sequelize, Sequelize) => {
     hackathonName: {
       type: Sequelize.STRING,
     },
+    hackathonId: {
+      type: Sequelize.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
     techStack: {
+      type: Sequelize.STRING, // DataTypes.BOOLEAN
+    },
+    exprLevel: {
+      type: Sequelize.INTEGER, // DataTypes.BOOLEAN
+    },
+    businessUnit: {
       type: Sequelize.STRING, // DataTypes.BOOLEAN
     }
   });
 
-  // Hackathon.associate = (models) => {
-  //   Hackathon.belongsTo(models.employee, {
-  //     foreignKey: "emp_id",
-  //     allowNull: false, 
-  //     type: Sequelize.INTEGER
-  //   });
-  // };
   return Hackathon;
 };

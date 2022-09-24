@@ -1,96 +1,99 @@
-import db from '../models/index.js';
+import db from "../models/index.js";
 import {
-	addEmployeeService,
-	deleteEmployeeService,
-	getAllEmployeesService,
-	getEmployeeByIdService,
-	updateEmployeeService,
-	findEmployeeHackByIdService
-} from '../service/employee.service.js';
+  addEmployeeService,
+  deleteEmployeeService,
+  getAllEmployeesService,
+  getEmployeeByIdService,
+  updateEmployeeService,
+  findEmployeeHackByIdService,
+} from "../service/employee.service.js";
 const { sequelize } = db.db;
 
-
 const getAllEmployees = async (req, res, next) => {
-	const result = await sequelize.transaction(async (t) => {
-		return await getAllEmployeesService(t);
-	});
-	res.status(200).send({
-		success: true,
-		message: result.length > 0 ? 'Data Found!!!' : 'No Data Found !!!',
-		data: result,
-	});
-	next();
+  const result = await sequelize.transaction(async (t) => {
+    return await getAllEmployeesService(t);
+  });
+  res.status(200).send({
+    success: true,
+    message: result.length > 0 ? "Data Found!!!" : "No Data Found !!!",
+    data: result,
+  });
+  next();
 };
 
 const getEmployeeById = async (req, res, next) => {
-	const { id } = req.params;
-	const result = await sequelize.transaction(async (t) => {
-		return await getEmployeeByIdService(t, id);
-	});
-	res.status(200).send({
-		success: true,
-		message: result ? 'Data Found!!!' : 'No Data Found !!!',
-		data: result,
-	});
-	next();
+  const { id } = req.params;
+  const result = await sequelize.transaction(async (t) => {
+    return await getEmployeeByIdService(t, id);
+  });
+  res.status(200).send({
+    success: true,
+    message: result ? "Data Found!!!" : "No Data Found !!!",
+    data: result,
+  });
+  next();
 };
 
 const deleteEmployee = async (req, res, next) => {
-	const { id } = req.params;
-	const result = await sequelize.transaction(async (t) => {
-		return await deleteEmployeeService(t, id);
-	});
-	res.status(200).send({
-		success: true,
-		message: result ? 'Deleted successfuly!!!' : 'No Data Found !!!',
-		data: result,
-	});
-	next();
+  const { id } = req.params;
+  const result = await sequelize.transaction(async (t) => {
+    return await deleteEmployeeService(t, id);
+  });
+  res.status(200).send({
+    success: true,
+    message: result ? "Deleted successfuly!!!" : "No Data Found !!!",
+    data: result,
+  });
+  next();
 };
 
 const updateEmployee = async (req, res, next) => {
-	const { body, params } = req;
-	const { id } = params;
+  const { body, params } = req;
+  const { id } = params;
 
-	await sequelize.transaction(async (t) => {
-		return await updateEmployeeService(t, id, body);
-	});
-	res.status(200).send({
-		success: true,
-		message: 'Updated successfully !!!',
-	});
-	next();
+  await sequelize.transaction(async (t) => {
+    return await updateEmployeeService(t, id, body);
+  });
+  res.status(200).send({
+    success: true,
+    message: "Updated successfully !!!",
+  });
+  next();
 };
 
 const addEmployee = async (req, res, next) => {
-	const { body } = req;
-	await sequelize.transaction(async (t) => {
-		return await addEmployeeService(t, body);
-	});
-	res.status(201).send({
-		success: true,
-		message: 'Inserted successfully!!!',
-	});
-	next();
+  const { body } = req;
+  await sequelize.transaction(async (t) => {
+    return await addEmployeeService(t, body);
+  });
+  res.status(201).send({
+    success: true,
+    message: "Inserted successfully!!!",
+  });
+  next();
 };
 
 // connect one to many relation Product and Reviews
 //get  hackathons for given team
 
 const findEmployeeHackById = async (req, res, next) => {
-	const { id } = req.params;
-	console.log("ID", req.params, id);
-	const result = await sequelize.transaction(async (t) => {
-		return await findEmployeeHackByIdService(t, id);
-	});
-	res.status(200).send({
-		success: true,
-		message: result ? 'Data Found!!!' : 'No Data Found !!!',
-		data: result,
-	});
-	next();
+  const { id } = req.params;
+  const result = await sequelize.transaction(async (t) => {
+    return await findEmployeeHackByIdService(t, id);
+  });
+  res.status(200).send({
+    success: true,
+    message: result ? "Data Found!!!" : "No Data Found !!!",
+    data: result,
+  });
+  next();
 };
 
-export { getAllEmployees, getEmployeeById, addEmployee, updateEmployee, deleteEmployee, 
-	 findEmployeeHackById
+export {
+  getAllEmployees,
+  getEmployeeById,
+  addEmployee,
+  updateEmployee,
+  deleteEmployee,
+  findEmployeeHackById,
 };

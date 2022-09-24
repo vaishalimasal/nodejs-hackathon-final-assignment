@@ -46,7 +46,6 @@ const addEmployeeDao = async (t, data) => {
 };
 
 const findEmployeeHackByIdDao = async (t, id) => {
-  console.log("Vaishali", id)
 const res =
   //return await 
   await employee.findOne({
