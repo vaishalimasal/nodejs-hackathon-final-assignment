@@ -32,19 +32,19 @@ const getAllHackathons = async (req, res, next) => {
 };
 
 const getHackathonById = async (req, res, next) => {
-  const { id } = req.params;
-  console.log("VSM", req.params, id);
-  const result = await sequelize.transaction(async (t) => {
-    return await getHackathonByIdService(t, id);
-  });
-  res.status(200).send({
-    success: true,
-    message: result ? "Data Found!!!" : "No Data Found !!!",
-    data: result,
-  });
-  console.log("controller result");
-  next();
-};
+	const { id } = req.params;
+	console.log("VSM", req.params, id);
+	const result = await sequelize.transaction(async (t) => {
+	  return await getHackathonByIdService(t, id);
+	});
+	res.status(200).send({
+	  success: true,
+	  message: result ? "Data Found!!!" : "No Data Found !!!",
+	  data: result,
+	});
+	console.log("controller result");
+	next();
+  };
 
 const getHackathonSearch = async (req, res, next) => {
   const { id } = req.params;
