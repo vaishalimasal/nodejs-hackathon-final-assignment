@@ -16,8 +16,14 @@ export default (sequelize, Sequelize) => {
     },
     businessUnit: {
       type: Sequelize.STRING, // DataTypes.BOOLEAN
-    }
-  });
+    },
+    
+  },
+  {
+    paranoid: true,
+    deletedAt:"softDelete"  //custome delelete
+  }
+  );
 
   return Hackathon;
 };

@@ -2,6 +2,7 @@ import bodyParser from "body-parser";
 import express from "express";
 import db from "./models/index.js";
 import employeesRoutes from "./router/employee.js";
+import hackathonRoutes from "./router/hackathon.js";
 const app = express();
 app.use(bodyParser.json());
 app.use(
@@ -12,10 +13,8 @@ app.use(
 const PORT = 3000;
 
 // routers
-// const router = require('./routes/productRouter.js')
-// app.use('/api/products', router)
-
 app.use("/employee", employeesRoutes);
+app.use("/hackathon", hackathonRoutes);
 
 console.log(db.db.sequelize);
 db.db.sequelize

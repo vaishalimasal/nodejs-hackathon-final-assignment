@@ -5,12 +5,34 @@ const addHackathonDao = async (t, data) => {
   await hackathon.create(data, { transaction: t });
 };
 
-const getAllHackathonsDao = async (t) => hackathon.findAll({ transaction: t });
+const getAllHackathonsDao = async (t) => {
+  return await hackathon.findAll(
+    //get all data with softDelete/paranooid
+    {
+      // paranoid:false
+    },
+    {
+      transaction: t,
+    }
+  );
+};
 
 const getHackathonByIdDao = async (t, id) => {
   return await hackathon.findOne(
     {
       where: { hackathonId: id },
+    },
+    { transaction: t }
+  );
+};
+
+const deleteHackathonbyIdDao = async (t, hackathonId) => {
+  return await hackathon.destroy(
+    //cancel data with softDelete/paranooid 
+    {
+      where: {
+        hackathonId,
+      },
     },
     { transaction: t }
   );
@@ -36,4 +58,5 @@ export {
   getAllHackathonsDao,
   getHackathonByIdDao,
   getHackathonSearchServiceDao,
+  deleteHackathonbyIdDao,
 };

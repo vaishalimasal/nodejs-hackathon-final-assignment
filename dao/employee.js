@@ -53,8 +53,6 @@ const res =
     include: ["hackathon"],
     transaction: t,
   });
-
-  console.log("CHECK", res);
   return res;
 };
 

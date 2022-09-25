@@ -12,7 +12,7 @@ import {
   addHackathon,
   getAllHackathons,
   getHackathonById,
-  getHackathonSearch,
+  getHackathonSearch,deleteHackathonbyId
 } from "../controller/hackathon.js";
 
 const router = express.Router();
@@ -22,16 +22,17 @@ const router = express.Router();
 router.get("/allHackathon", getAllHackathons);
 router.post("/addHackathon", addHackathon);
 router.get("/test/allhackathon/:id", getHackathonById);
-router.get("/searchhackathon", getHackathonSearch);
+router.delete("/hackathon/delete/:id", deleteHackathonbyId);
+router.get("/hackathonsearch", getHackathonSearch);
 
 //employee router
 router.get("/", getAllEmployees);
-//router.get("/:id", getEmployeeById);
+router.get("/:id", getEmployeeById);
 router.put("/:id", updateEmployee);
 router.post("/", addEmployee);
 router.delete("/:id", deleteEmployee);
 
 // get employee-hackathon
-router.get("/getEmployeeHackathon/:id", findEmployeeHackById);
+// router.get("/getEmployeeHackathon/:id", findEmployeeHackById);
 
 export default router;

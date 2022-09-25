@@ -4,6 +4,7 @@ import {
   getAllHackathonsService,
   getHackathonByIdService,
   getHackathonSearchService,
+  deleteHackathonbyIdService
 } from "../service/hackathon.service.js";
 const { sequelize } = db.db;
 
@@ -32,29 +33,22 @@ const getAllHackathons = async (req, res, next) => {
 };
 
 const getHackathonById = async (req, res, next) => {
-	const { id } = req.params;
-	console.log("VSM", req.params, id);
-	const result = await sequelize.transaction(async (t) => {
-	  return await getHackathonByIdService(t, id);
-	});
-	res.status(200).send({
-	  success: true,
-	  message: result ? "Data Found!!!" : "No Data Found !!!",
-	  data: result,
-	});
-	console.log("controller result");
-	next();
-  };
+  const { id } = req.params;
+  console.log("VSM", req.params, id);
+  const result = await sequelize.transaction(async (t) => {
+    return await getHackathonByIdService(t, id);
+  });
+  res.status(200).send({
+    success: true,
+    message: result ? "Data Found!!!" : "No Data Found !!!",
+    data: result,
+  });
+  console.log("controller result");
+  next();
+};
 
 const getHackathonSearch = async (req, res, next) => {
   const { id } = req.params;
-  console.log("VSM", req.params, id);
-  var hackathonName = req.query.hackathonName;
-  var techStack = req.query.techStack;
-
-  console.log("hackathonName :", hackathonName);
-  console.log("techStack :", techStack);
-
   const result = await sequelize.transaction(async (t) => {
     return await getHackathonSearchService(t, hackathonName, techStack);
   });
@@ -63,8 +57,21 @@ const getHackathonSearch = async (req, res, next) => {
     message: result ? "Data Found!!!" : "No Data Found !!!",
     data: result,
   });
-  console.log("controller result", result);
+
   next();
 };
 
-export { addHackathon, getAllHackathons, getHackathonById, getHackathonSearch };
+const deleteHackathonbyId = async (req, res, next) => {
+  const { id } = req.params;
+  const result = await sequelize.transaction(async (t) => {
+    return await deleteHackathonbyIdService(t, id);
+  });
+  res.status(200).send({
+    success: true,
+    message: result ? "Deleted successfuly!!!" : "No Data Found !!!",
+    data: result,
+  });
+  next();
+};
+
+export { addHackathon, getAllHackathons, getHackathonById, getHackathonSearch, deleteHackathonbyId};
