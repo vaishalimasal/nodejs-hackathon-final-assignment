@@ -1,3 +1,4 @@
+import { DATE } from "sequelize";
 import db from "../models/index.js";
 const { sequelize, hackathon } = db.db;
 
@@ -25,6 +26,26 @@ const getHackathonByIdDao = async (t, id) => {
     { transaction: t }
   );
 };
+
+const updateHackathonDao = async (t, endDate, data, hackathonId) => {
+  var whereCondition = {};
+   if (endDate >= new Date()) {
+    whereCondition["endDate"] = endDate;
+    }
+  return await employee.update(
+    {
+      hackathonName: data.hackathonName,
+    },
+    {
+      where: {
+        whereCondition, 
+        hackathonId
+      },
+    },
+    { transaction: t }
+  );
+};
+
 
 const deleteHackathonbyIdDao = async (t, hackathonId) => {
   return await hackathon.destroy(
@@ -58,5 +79,6 @@ export {
   getAllHackathonsDao,
   getHackathonByIdDao,
   getHackathonSearchServiceDao,
+  updateHackathonDao,
   deleteHackathonbyIdDao,
 };

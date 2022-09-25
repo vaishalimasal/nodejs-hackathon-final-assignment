@@ -4,6 +4,7 @@ import {
   getAllHackathonsService,
   getHackathonByIdService,
   getHackathonSearchService,
+  updateHackathonService,
   deleteHackathonbyIdService
 } from "../service/hackathon.service.js";
 const { sequelize } = db.db;
@@ -34,7 +35,6 @@ const getAllHackathons = async (req, res, next) => {
 
 const getHackathonById = async (req, res, next) => {
   const { id } = req.params;
-  console.log("VSM", req.params, id);
   const result = await sequelize.transaction(async (t) => {
     return await getHackathonByIdService(t, id);
   });
@@ -43,12 +43,17 @@ const getHackathonById = async (req, res, next) => {
     message: result ? "Data Found!!!" : "No Data Found !!!",
     data: result,
   });
-  console.log("controller result");
   next();
 };
 
 const getHackathonSearch = async (req, res, next) => {
   const { id } = req.params;
+  console.log("VSM", req.params, id);
+  var hackathonName = req.query.hackathonName;
+  var techStack = req.query.techStack;
+
+  console.log("hackathonName :", hackathonName);
+  console.log("techStack :", techStack);
   const result = await sequelize.transaction(async (t) => {
     return await getHackathonSearchService(t, hackathonName, techStack);
   });
@@ -58,6 +63,20 @@ const getHackathonSearch = async (req, res, next) => {
     data: result,
   });
 
+  next();
+};
+
+const updateHackathon = async (req, res, next) => {
+  const { body, params } = req;
+  const { id } = params;
+
+  await sequelize.transaction(async (t) => {
+    return await updateHackathonService(t, id, body);
+  });
+  res.status(200).send({
+    success: true,
+    message: "Updated successfully !!!",
+  });
   next();
 };
 
@@ -74,4 +93,4 @@ const deleteHackathonbyId = async (req, res, next) => {
   next();
 };
 
-export { addHackathon, getAllHackathons, getHackathonById, getHackathonSearch, deleteHackathonbyId};
+export { addHackathon, getAllHackathons, getHackathonById, getHackathonSearch, updateHackathon, deleteHackathonbyId};

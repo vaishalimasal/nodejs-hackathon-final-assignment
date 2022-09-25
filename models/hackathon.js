@@ -17,6 +17,12 @@ export default (sequelize, Sequelize) => {
     businessUnit: {
       type: Sequelize.STRING, // DataTypes.BOOLEAN
     },
+    startDate: {
+      type: Sequelize.DATE, // DataTypes.BOOLEAN
+    },
+    endDate: {
+      type: Sequelize.DATE, // DataTypes.BOOLEAN
+    },
     
   },
   {

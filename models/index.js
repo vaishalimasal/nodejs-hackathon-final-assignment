@@ -25,7 +25,7 @@ db.hackathon = Hackathon(sequelize, Sequelize);
 
 db.employee.hasMany(db.hackathon, {
    foreignKey: "employeeId",
-  as: "hackathon"
+  as: "hackathon",
 });
 
 db.hackathon.belongsTo(db.employee, {
