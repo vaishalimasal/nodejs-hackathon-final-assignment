@@ -3,7 +3,7 @@ import {
   getAllHackathonsDao,
   getHackathonByIdDao,
   getHackathonSearchServiceDao,
-  updateHackathonDao,
+  // updateHackathonDao,
   deleteHackathonbyIdDao
 } from "../dao/hackathon.js";
 
@@ -17,8 +17,11 @@ const getHackathonByIdService = async (t, id) =>
 const getHackathonSearchService = async (t, hackathonName, techStack) =>
   await getHackathonSearchServiceDao(t, hackathonName, techStack);
 
-const updateHackathonService = async (t, id, data) =>
-	await updateHackathonDao(t, id, data);
+// const updateHackathonService = async (t, id, data,endDate) => {
+//     await updateHackathonDao(t, id, data,endDate); 
+  
+    
+// }
 
 const deleteHackathonbyIdService = async (t, id) => await deleteHackathonbyIdDao(t, id);
 
@@ -28,6 +31,6 @@ export {
   getAllHackathonsService,
   getHackathonByIdService,
   getHackathonSearchService,
-  updateHackathonService,
+  // updateHackathonService,
   deleteHackathonbyIdService
 };

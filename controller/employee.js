@@ -6,6 +6,7 @@ import {
   getEmployeeByIdService,
   updateEmployeeService,
   findEmployeeHackByIdService,
+  findEmployeeParticipantByIdService
 } from "../service/employee.service.js";
 const { sequelize } = db.db;
 
@@ -89,6 +90,20 @@ const findEmployeeHackById = async (req, res, next) => {
   next();
 };
 
+
+const findEmployeeParticipantById = async (req, res, next) => {
+  const { id } = req.params;
+  const result = await sequelize.transaction(async (t) => {
+    return await findEmployeeParticipantByIdService(t, id);
+  });
+  res.status(200).send({
+    success: true,
+    message: result ? "Data Found!!!" : "No Data Found !!!",
+    data: result,
+  });
+  next();
+};
+
 export {
   getAllEmployees,
   getEmployeeById,
@@ -96,4 +111,5 @@ export {
   updateEmployee,
   deleteEmployee,
   findEmployeeHackById,
+  findEmployeeParticipantById
 };

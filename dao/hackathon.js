@@ -27,24 +27,26 @@ const getHackathonByIdDao = async (t, id) => {
   );
 };
 
-const updateHackathonDao = async (t, endDate, data, hackathonId) => {
-  var whereCondition = {};
-   if (endDate >= new Date()) {
-    whereCondition["endDate"] = endDate;
-    }
-  return await employee.update(
-    {
-      hackathonName: data.hackathonName,
-    },
-    {
-      where: {
-        whereCondition, 
-        hackathonId
-      },
-    },
-    { transaction: t }
-  );
-};
+// const updateHackathonDao = async (t, endDate,data, hackathonId) => {
+//   whereCondition={} 
+//   if(endDate >= new Date()){
+//     return await employee.update(
+//       {
+//         hackathonName: data.hackathonName,
+//       },
+//       {
+//         where: {
+//           where: {
+//             "endDate": {
+//               [Op.gt]: new Date()
+//             }
+//         },
+//       },
+//       { transaction: t }
+//     );
+//   }
+  
+// };
 
 
 const deleteHackathonbyIdDao = async (t, hackathonId) => {
@@ -79,6 +81,6 @@ export {
   getAllHackathonsDao,
   getHackathonByIdDao,
   getHackathonSearchServiceDao,
-  updateHackathonDao,
+  // updateHackathonDao,
   deleteHackathonbyIdDao,
 };

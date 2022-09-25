@@ -1,7 +1,8 @@
 import Sequelize from "sequelize";
 import dbConfig from "../config/sequelize/dbConfig.js";
 import Employee from "./employee.js";
-import Hackathon from "./hackathon.js";
+import Hackathon from "./hackathon.js";  
+import Participant from "./participant.js";
 
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
@@ -20,9 +21,9 @@ db.sequelize = sequelize;
 
 db.employee = Employee(sequelize, Sequelize);
 db.hackathon = Hackathon(sequelize, Sequelize);
+db.Participant = Participant(sequelize, Sequelize);
 
 // 1 to Many Relation
-
 db.employee.hasMany(db.hackathon, {
    foreignKey: "employeeId",
   as: "hackathon",
@@ -33,5 +34,15 @@ db.hackathon.belongsTo(db.employee, {
   as: "employee",
 });
 
+// many to Many Relation
+db.employee.hasMany(db.Participant, {
+  foreignKey: "employeeId",
+ as: "Participant",
+});
+
+db.Participant.belongsTo(db.employee, {
+ foreignKey: "employeeId",
+ as: "employee",
+});
 
 export default { db };

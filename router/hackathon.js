@@ -6,7 +6,7 @@ import {
   getHackathonById,
   getHackathonSearch,
   deleteHackathonbyId,
-  updateHackathon
+  // updateHackathon
 } from "../controller/hackathon.js";
 
 const router = express.Router();
@@ -16,9 +16,9 @@ const router = express.Router();
 router.get("/all", getAllHackathons);
 router.get("/all/:id", getHackathonById);
 router.post("/add", addHackathon);
-router.delete("delete/:id", deleteHackathonbyId);
-router.put("/update/:id", updateHackathon);
-router.get("/search", getHackathonSearch);
+router.delete("/delete/:id", deleteHackathonbyId);
+// router.put("/update/:id", updateHackathon);
+router.get("/search?", getHackathonSearch);
 
 // get employee-hackathon
 // router.get("/getEmployeeHackathon/:id", findEmployeeHackById);

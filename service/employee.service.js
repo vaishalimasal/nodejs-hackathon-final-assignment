@@ -4,7 +4,8 @@ import {
 	getAllEmployeesDao,
 	getEmployeeByIdDao,
 	updateEmployeeDao,
-	 findEmployeeHackByIdDao
+	 findEmployeeHackByIdDao,
+	 findEmployeeParticipantByIdDao
 } from '../dao/employee.js';
 const getAllEmployeesService = async (t) => await getAllEmployeesDao(t);
 const getEmployeeByIdService = async (t, id) => await getEmployeeByIdDao(t, id);
@@ -15,6 +16,8 @@ const updateEmployeeService = async (t, id, data) =>
 
 const findEmployeeHackByIdService = async (t, id) => await findEmployeeHackByIdDao(t, id);
 
+const findEmployeeParticipantByIdService = async (t, id) => await findEmployeeParticipantByIdDao(t, id);
+
 	
 
 export {
@@ -23,5 +26,6 @@ export {
 	addEmployeeService,
 	updateEmployeeService,
 	deleteEmployeeService,
-	findEmployeeHackByIdService
+	findEmployeeHackByIdService,
+	findEmployeeParticipantByIdService
 };

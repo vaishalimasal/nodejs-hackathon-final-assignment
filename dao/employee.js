@@ -56,6 +56,16 @@ const res =
   return res;
 };
 
+const findEmployeeParticipantByIdDao = async (t, id) => {
+  const res =
+    //return await 
+    await employee.findOne({
+      where: { employeeId: Number(id) },
+      include: ["hackathon"],
+      transaction: t,
+    });
+    return res;
+  };
 export {
   getAllEmployeesDao,
   getEmployeeByIdDao,
@@ -63,4 +73,5 @@ export {
   updateEmployeeDao,
   deleteEmployeeDao,
   findEmployeeHackByIdDao,
+  findEmployeeParticipantByIdDao
 };
