@@ -3,6 +3,10 @@ export default {
   USER: "root",
   PASSWORD: "password",
   DB: "testdb_hackathon",
+  // HOST: "localhost",
+  // USER: "root",
+  // PASSWORD: "password",
+  // DB: "testdb_hackathon",
   dialect: "mysql",
   pool: {
     max: 5,
